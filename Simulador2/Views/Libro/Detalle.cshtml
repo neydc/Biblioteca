@@ -1,0 +1,38 @@
+﻿
+@{
+    
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<br/>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-3">
+            <img src="@Model.Imagen" alt="Alternate Text" />
+        </div>
+        <div class="col-lg-6">
+            <strong>Titulo:</strong>
+            @Model.Titulo
+            <br />
+            <strong> Autor:</strong> @Model.Autor
+            <br />
+            <strong>Resumen:</strong> @Model.Resumen
+
+            <h3>Comentarios del Libro</h3>
+            <a href="#" id="boton">Ver Comentarios</a>
+            <div id="car">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $("#boton").click(function (e) {
+
+        $.ajax("/Comentario/Index?IdLibro=4").done(function (res) {
+                $("#car").html(res);
+            })
+        });
+</script>

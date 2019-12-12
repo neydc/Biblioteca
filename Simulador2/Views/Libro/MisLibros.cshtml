@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "MisLibros";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Mis Libros</h2>
+
+MisLibros
+
+
+
+<a class="btn btn-primary" href="/Libro/Index?id=@ViewBag.usuario">Agregar Libro</a>
+<a href="/Libro/Salir" class="btn btn-primary">Salir</a>
+<div id="enc">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4" style="border:1px">
+            <img src="@item.Imagen" style="width:200px;height:200px" />
+            <br />
+            <strong>Titulo:</strong> @item.Titulo
+            <br />
+            <strong>Autor:</strong> @item.Autor
+            <br />
+            <a href="/Libro/Detalle?IdLibro=@item.Id">Ver Mas</a>
+        </div>
+    }
+</div>

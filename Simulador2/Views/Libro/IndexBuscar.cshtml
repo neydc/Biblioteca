@@ -1,0 +1,25 @@
+﻿
+@{
+
+    Layout = null;
+}
+<br />
+<br />
+<a href="/Libro/Index?id=@ViewBag.usuario" class="btn btn-success">Regresar a la lista de libros</a>
+
+@if (Model == null)
+{
+    <h1>Libro no encontrado</h1>
+}
+else
+{
+    <div class="col-md-4" style="border:1px">
+        <img src="@Model.Imagen" style="width:200px;height:200px" />
+        <br />
+        <strong>Titulo:</strong> @Model.Titulo
+        <br />
+        <strong>Autor:</strong> @Model.Autor
+        <br />
+        <a href="/Libro/Detalle?IdLibro=@Model.Id">Ver Mas</a>
+    </div>
+    }
