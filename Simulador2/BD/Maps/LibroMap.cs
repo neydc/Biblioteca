@@ -14,7 +14,7 @@ namespace Simulador2.BD.Maps
             ToTable("Libro");
             HasKey(a=>a.Id);
 
-            HasRequired(a=>a.Categoria).WithMany().HasForeignKey(a=>a.CategoriaId);
+           // HasRequired(a=>a.Categoria).WithMany().HasForeignKey(a=>a.CategoriaId);
         }
     }
 }

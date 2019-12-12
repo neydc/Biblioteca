@@ -22,18 +22,7 @@ namespace Simulador2.Controllers
 
         public ActionResult IndexBuscar(string nom, int? id)
         {
-            //var datos = new List<Libro>();
-            //datos = null;
-            //if (query == null || query == "")
-            //{
-            //    datos = context.Libros.ToList();
-            //}
-            //else
-            //{
-            //    datos = context.Libros.Where(o => o.Titulo.Contains(query)).ToList();
-            //}
-            //ViewBag.datos = query;
-            //return View(datos);
+        
             ViewBag.usuario = id;
             var buscando = context.Libros.Where(o => o.Titulo == nom).FirstOrDefault();
             return PartialView(buscando);
@@ -57,7 +46,7 @@ namespace Simulador2.Controllers
 
             if (ModelState.IsValid)
             {
-                libro.CategoriaId = 5;
+               // libro.CategoriaId = 5;
                 
                 context.Libros.Add(libro);
                 context.SaveChanges();
@@ -110,8 +99,6 @@ namespace Simulador2.Controllers
             return RedirectToAction("Login");
 
         }
-
-
         public ActionResult Agregar(int idLibro, int idUsuario)
         {
             ViewBag.usuario = idUsuario;
@@ -124,12 +111,12 @@ namespace Simulador2.Controllers
                 context.Capturas.Add(cap);
                 context.SaveChanges();
             }
-             
-           
+            
             return View();
         }
 
-
+      
+        
         public ActionResult MisLibros(int id)
         {
             ViewBag.usuario = id;

@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "IndexComentarios";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>IndexComentarios</h2>
+
+<table>
+    <thead>
+        <tr>
+            <td>Nombre</td>
+        </tr>
+    </thead>
+    <tbody>
+         @foreach (var item in Model)
+         {
+             <tr>
+                 <td>@item.Nombre</td>
+             </tr>
+         }
+    </tbody>
+</table>

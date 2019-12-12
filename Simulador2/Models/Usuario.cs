@@ -11,6 +11,10 @@ namespace Simulador2.Models
         public string Nombre { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
+
         public List<UsuarioLibro> libros { get; set; }
+
+        //public List<Coment> libroscomentarios{ get; set; }
+
     }
 }

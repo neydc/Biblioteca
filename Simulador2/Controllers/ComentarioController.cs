@@ -13,14 +13,43 @@ namespace Simulador2.Controllers
     {
         public StoreContext context = new StoreContext();
 
-        public ActionResult Index(int idLibro)
+        public ActionResult Index(int LibroId)
         {
-            
-            ViewBag.LibroId = idLibro;
+            ViewBag.IdLibro = LibroId;
+            // ViewBag.Comentarios = context.Comentarios.ToList();
+            //var comentarios = context.Comentarios.Where(a=> a.LibroId == IdLibro).FirstOrDefault();
+            // var comentarios = context.Comentarios.Find(IdLibro);
+            var comentarios = context.Libros.Include(a => a.Comentarios).Where(a => a.Id == LibroId).ToList();
+            return View(comentarios);
+        }
 
-            var comentario = context.Comentarios.Where(a=>a.LibroId==idLibro).FirstOrDefault();
-            return View(comentario); 
+        [HttpGet]
+        public ActionResult Comentar(int idLibro, int idUsuario)
+        {
+            ViewBag.usuario = idUsuario;
+            ViewBag.libro = idLibro;
+
+
+            return View(new Coment());
+        }
+        [HttpPost]
+        public ActionResult Comentar(Coment comentario, int idLibro/*, int idUsuario*/)
+        {
+            //ViewBag.usuario = idUsuario;
+            ViewBag.libro = idLibro;
+
+            if (ModelState.IsValid)
+            {
+                comentario.LibroId = idLibro;
+                //comentario.UsuarioId = idUsuario;
+
+                ViewBag.captura = "Comentario Agregado";
+                context.Comentarios.Add(comentario);
+                context.SaveChanges();
+            }
+
+            return View();
         }
     }
-       
 }
+       

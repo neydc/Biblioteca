@@ -1,16 +1,35 @@
 ﻿
-@{
-    
-    Layout = null;
-}
+
+<brt></brt>
+<div class="container">
+    <div class="row">
+        
+           
+            @foreach (var item in Model)
+            {
+                    <strong>Libro:</strong> @item.Titulo
+                <br />
+                <br />
+                foreach (var item1 in item.Comentarios)
+                {
+
+                <ul>
+                    <li>@item1.Nombre</li>
+                </ul>
+                }
+
+            }
+            @*@{
+            if (item.sexo == "M")
+            {
+                <span>Masculino</span>}
+            else
+            {
+                <span>Femenino</span>}
+        }*@
+    </div>
+</div>
 
 
-      <div class="container">
-          <div class="row">
-              <ol>
-                  <li>@Model.Nombre</li>
-              </ol>
-          </div>
-      </div>
 
 

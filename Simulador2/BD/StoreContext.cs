@@ -13,7 +13,7 @@ namespace Simulador2.BD
         public IDbSet<Categoria> Categorias { get; set; }
         public IDbSet<Usuario> Usuarios { get; set; }
         public IDbSet<Libro> Libros { get; set; }
-        public IDbSet<Comments> Comentarios{ get; set; }
+        public IDbSet<Coment> Comentarios{ get; set; }
         public IDbSet<UsuarioLibro> Capturas{ get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -23,6 +23,7 @@ namespace Simulador2.BD
             modelBuilder.Configurations.Add(new UsuarioMap());
             modelBuilder.Configurations.Add(new CategoriaMap());
             modelBuilder.Configurations.Add(new UsuarioLibroMap());
+            modelBuilder.Configurations.Add(new ComentMap()); 
         }
     }
 }

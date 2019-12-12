@@ -4,40 +4,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@*<form action="/Libro/Index">
-        <div class="col-sm-4">
-            <input id="query" class="form-control" type="text" name="query" value="@ViewBag.datos" placeholder="Ingrese entidad" />
-        </div>
-        <div class="col-sm-2">
-            <button id="buscar" class="btn btn-success"><span class="glyphicon glyphicon-search"></span> Buscar</button>
-        </div>
-
-    </form>
-    <div class="container">
-        <div class="row">
-
-            <div id="body"></div>
-        </div>
-    </div>
-
-    <script>
-        $("#buscar").click(function (e) {
-            $.get("/Libro/IndexBuscar?query=" + $("#query").val(), function (respuesta) {
-                $("#body").html(respuesta);
-            });
-            e.preventDefault();
-        });
-    </script>
-
-    <script>
-        $(document).ready(function (e) {
-            $.get("/Libro/IndexBuscar?query=" + $("#query").val(), function (respuesta) {
-                $("#body").html(respuesta);
-            });
-            e.preventDefault();
-        });
-    </script>*@
-
 
 <br />
 <div>
@@ -48,10 +14,10 @@
 
 @if (ViewBag.usuario == null)
 {
-    <a href="/Libro/Crear" class="btn btn-primary">Crear Libro</a>
+    <a href="/Libro/Crear" class="btn btn-primary">Agregar Nuevo Libro</a>
     <a href="/Libro/Login" class="btn btn-primary">Login</a>
 }
-    <br />
+<br />
 @if (ViewBag.usuario != null)
 {
     <a class="btn btn-success" href="/Libro/MisLibros?id=@ViewBag.usuario">Ver mi lista de libros</a>
@@ -59,44 +25,49 @@
 }
 <br />
 <br />
+
 <div id="enc">
 
-    <div class="card">
+    <div class="">
 
         @foreach (var item in Model)
         {
-        <div class="card-body">
-            <div class="col-md-4 " style="border-bottom: #a5a7aa solid 1px;">
-                <div>
-                    <img src="@item.Imagen" style="width:200px;height:200px" />
+            <div class="">
+                <div class="col-md-4">
+                    <div>
+                        <img src="@item.Imagen" style="width:280px;height:300px" />
+                    </div>
+                    <br />
+                    <div>
+                        <strong>Código:</strong>@item.Id<br />
+                        <strong>Titulo:</strong> @item.Titulo
+                        <br />
+                        <strong>Autor:</strong> @item.Autor
+                        <br />
+                        <a class="btn btn-primary" href="/Libro/Detalle?IdLibro=@item.Id">Ver Mas</a>
+                    </div>
+                    @if (ViewBag.usuario != null)
+                    {
+                        <a class="btn btn-primary" href="/Libro/Agregar?idLibro=@item.Id&idUsuario=@ViewBag.usuario">Agregar </a>
+                        <a class="btn btn-primary" href="/Comentario/Comentar?idLibro=@item.Id&idUsuario=@ViewBag.usuario">Comentar</a>
+                    }
                 </div>
-                <br />
-                <strong>Código:</strong>@item.Id<br />
-                <strong>Titulo:</strong> @item.Titulo
-                <br />
-                <strong>Autor:</strong> @item.Autor
-                <br />
-                <a href="/Libro/Detalle?IdLibro=@item.Id">Ver Mas</a>
-                @if (ViewBag.usuario != null)
-                {
-                    <a href="/Libro/Agregar?idLibro=@item.Id&idUsuario=@ViewBag.usuario">Agregar a mi biblioteca</a>
-                }
             </div>
-        </div>
+
         }
     </div>
-    </div>
+</div>
 
-    <script>
+<script>
 
-        function busqueda(e) {
-            var nombre = $("#busc");
-            var value = nombre.val();
-            $.get("/Libro/IndexBuscar?nom=" + value, function (respuesta) {
-                $("#enc").html(respuesta);
-            });
+    function busqueda(e) {
+        var nombre = $("#busc");
+        var value = nombre.val();
+        $.get("/Libro/IndexBuscar?nom=" + value, function (respuesta) {
+            $("#enc").html(respuesta);
+        });
 
-            e.preventDefault();
-        }
+        e.preventDefault();
+    }
 
-    </script>
+</script>
